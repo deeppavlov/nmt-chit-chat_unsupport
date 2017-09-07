@@ -367,7 +367,7 @@ def _format_results(name, ppl, scores, metrics):
   result_str = "%s ppl %.2f" % (name, ppl)
   if scores:
     for metric in metrics:
-      result_str += ", %s %s %.1f" % (name, metric, scores[metric])
+      result_str += ""#, %s %s %.1f" % (name, metric, scores[metric])
   return result_str
 
 
