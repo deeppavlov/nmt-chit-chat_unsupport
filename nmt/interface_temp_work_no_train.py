@@ -468,18 +468,19 @@ def run_main(flags, default_hparams, train_fn, inference_fn, target_session="", 
 
     # Inference
     trans_file = flags.inference_output_file
-    ###########edited for interface
-
-    ckpt_name=None
-    with open(os.path.join(param['model_dir'],'checkpoint')) as f:
-      ckpt_name = f.readline().split('/')[-1].split('"')[0]
-    ckpt = os.path.join(param['model_dir'],ckpt_name)
+    ckpt = flags.ckpt
     #ckpt = os.path.join(param['model_dir'],'translate.ckpt-120000'),
     ###########edited for interface
     hparams.vocab_prefix = os.path.join(param['model_dir'],'vocab')
     hparams.src_vocab_file = (hparams.vocab_prefix+'.'+hparams.src)
     hparams.tgt_vocab_file = (hparams.vocab_prefix+'.'+hparams.tgt)
-    
+    print('---------------------------')
+    print(param['model_dir'])
+    print('---------------------------')
+    print(ckpt)
+    if not ckpt:
+      ckpt = tf.train.latest_checkpoint(param['model_dir'])
+
     _, answer = inference_fn(ckpt, flags.inference_input_file,
                  trans_file, hparams, num_workers, jobid,0, msg)
     return answer
