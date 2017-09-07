@@ -2,9 +2,9 @@
 
 #### Model
 
-'''
+```
 wget  http://share.ipavlov.mipt.ru:8080/repository/models/chitchat/nmt-chit-chat-v0.1.1.tgz
-'''
+```
 #### Example
 ```
 from nmt import interface
