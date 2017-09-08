@@ -9,10 +9,14 @@ export CHITCHAT_MODEL=<PATH_TO_MODEL>
 #### Example
 ```
 from nmt import interface
+import os
 
-interface.init('{PATH}/model')
+model_path = os.environ.get("CHITCHAT_MODEL")
+interface.init(model_path)
 
-answer = interface.send('Здравствуйте, нет заисления зарплаты по реестру 9 от 31.03.17 года, реестр висит со вчерашнего дня?')
-
+while True:
+    q = input("[Ваш вопрос]> ")
+    r = interface.send(q)
+    print("[Ответ]> %s" % r[0])
 
 ```
